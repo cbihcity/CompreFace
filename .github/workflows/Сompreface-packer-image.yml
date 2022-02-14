@@ -2,6 +2,10 @@
 name: Сompreface packer image
 on: 
   workflow_dispatch:
+    inputs:
+      version:
+        description: version (e.g., 0.6.1)
+        required: true
 jobs:
   packer:
     runs-on: ubuntu-latest
@@ -38,3 +42,4 @@ jobs:
           target: aws-compreface.pkr.hcl
         env:
           PACKER_LOG: 1
+          RELEASE: ${{ github.event.inputs.release }}
