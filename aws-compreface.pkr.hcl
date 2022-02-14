@@ -1,3 +1,5 @@
+variable "release" {  default = env("RELEASE")}
+
 packer {
   required_plugins {
     amazon = {
@@ -8,7 +10,7 @@ packer {
 }
 
 source "amazon-ebs" "compreface" {
-  ami_name      = "compreface_image"
+  ami_name      = "compreface_image_${var.release}"
   instance_type = "t2.medium"
   region        = "us-east-1"
   source_ami_filter {
